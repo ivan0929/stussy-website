@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stussy purchasing website</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #1a1a1a;
+            color: #fff;
+        }
+
+        .intro-page {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            background: url('https://cdn.freebiesupply.com/logos/large/2x/stussy-1-logo-png-transparent.png') no-repeat center center/cover; /* Update this URL with your desired background image URL */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .intro-page .button-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .intro-page button {
+            padding: 10px 20px;
+            background-color: #444;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 1em;
+            cursor: pointer;
+        }
+
+        .intro-page button:hover {
+            background-color: #777;
+        }
+
+        header, nav, .products, .cart {
+            display: none;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background-color: #333;
+        }
+
+        header h1 {
+            margin: 0;
+        }
+
+        .cart-summary {
+            color: #fff;
+            font-size: 1.2em;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #444;
+            padding: 10px 0;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 15px;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        .products {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .product {
+            background-color: #2a2a2a;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .product img {
+            max-width: 100%;
+            border-radius: 8px;
+            max-height: 200px;
+            object-fit: cover;
+        }
+
+        .product button {
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #555;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .product button:hover {
+            background-color: #777;
+        }
+
+        .cart {
+            text-align: center;
+            margin: 20px;
+        }
+
+        .cart span {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="intro-page" id="intro-page">
+        <h1>Welcome to stussy online purchsing store</h1>
+        <div class="button-group">
+            <button onclick="enterShop('long-sleeve')">Long Sleeve</button>
+            <button onclick="enterShop('short-sleeve')">Short Sleeve</button>
+            <button onclick="enterShop('accessories')">Accessories</button>
+            <button onclick="enterShop('outerwear')">Outerwear</button>
+        </div>
+    </div>
+
+    <header>
+        <h1>Let's buy one to be a chill guy</h1>
+        <div class="cart-summary">Cart Total: NT$<span id="total-price-header">0</span></div>
+    </header>
+
+    <nav>
+        <a href="#" onclick="showCategory('long-sleeve')">Long Sleeve</a>
+        <a href="#" onclick="showCategory('short-sleeve')">Short Sleeve</a>
+        <a href="#" onclick="showCategory('accessories')">Accessories</a>
+        <a href="#" onclick="showCategory('outerwear')">Outerwear</a>
+    </nav>
+
+    <div id="product-container" class="products">
+        <div class="product" data-category="long-sleeve">
+            <img src="https://www.stussy.com/cdn/shop/files/117240_BLAC_3.jpg?v=1731622164&width=1440" alt="Long Sleeve Hoodie">
+            FELT PATCH KNIT HOODIE</p>
+            <p>Price: NT$8540</p>
+            <select>
+                <option>Size: S</option>
+                <option>Size: M</option>
+                <option>Size: L</option>
+            </select>
+            <button onclick="addToCart(8540)">Add to Cart</button>
+        </div>
+	<div class="product" data-category="long-sleeve">
+            <img src="https://www.stussy.com/cdn/shop/files/117240_NATL_3.jpg?v=1732303458&width=1440" alt="Long Sleeve Hoodie">
+            FELT PATCH KNIT HOODIE</p>
+            <p>Price: NT$8540</p>
+            <select>
+                <option>Size: S</option>
+                <option>Size: M</option>
+                <option>Size: L</option>
+            </select>
+            <button onclick="addToCart(8540)">Add to Cart</button>
+        </div>
+	<div class="product" data-category="long-sleeve">
+            <img src="https://www.stussy.com/cdn/shop/files/1925117_BLUE_1.jpg?v=1732138107&width=1440" alt="Long Sleeve Hoodie">
+            SMOOTH INTERNATIONAL HOODIE PIGMENT DYED</p>
+            <p>Price: NT$7680</p>
+            <select>
+                <option>Size: S</option>
+                <option>Size: M</option>
+                <option>Size: L</option>
+            </select>
+            <button onclick="addToCart(7680)">Add to Cart</button>
+        </div>
+	
+        <div class="product" data-category="long-sleeve">
+            <img src="https://www.stussy.com/cdn/shop/files/1925117_BLAC_1.jpg?v=1732138106&width=1440" alt="Long Sleeve Hoodie">
+            <p>SMOOTH INTERNATIONAL HOODIE PIGMENT DYED</p>
+            <p>Price: NT$7680</p>
+            <select>
+                <option>Size: S</option>
+                <option>Size: M</option>
+                <option>Size: L</option>
+            </select>
+            <button onclick="addToCart(7680)">Add to Cart</button>
+        </div>
+        <div class="product" data-category="long-sleeve">
+            <img src="https://www.stussy.com/cdn/shop/files/1925116_NATL_1.jpg?v=1732138103&width=1440" alt="Long Sleeve Hoodie">
+            <p>DOT STAMP HOODIE PIGMENT DYED</p>
+            <p>Price: NT$5980</p>
+            <select>
+                <option>Size: S</option>
+                <option>Size: M</option>
+                <option>Size: L</option>
+            </select>
+            <button onclick="addToCart(5980)">Add to Cart</button>
+        </div>
+	<div class="product" data-category="long-sleeve">
+            <img src="https://www.stussy.com/cdn/shop/files/1925116_FORE_1.jpg?v=1732138102&width=1440" alt="Long Sleeve Hoodie">
+            <p>DOT STAMP HOODIE PIGMENT DYED</p>
+            <p>Price: NT$5980</p>
+            <select>
+                <option>Size: S</option>
+                <option>Size: M</option>
+                <option>Size: L</option>
+            </select>
+            <button onclick="addToCart(5980)">Add to Cart</button>
+        </div>
+        <div class="product" data-category="short-sleeve">
+            <img src="https://www.stussy.com/cdn/shop/files/1905059_SHAR_1.jpg?v=1728313846&width=1440" alt="Short Sleeve T-Shirt">
+            <p> BASIC T-SHIRT</p>
+            <p>Price: NT$1580</p>
+            <select>
+                <option>Size: S</option>
+                <option>Size: M</option>
+                <option>Size: L</option>
+            </select>
+            <button onclick="addToCart(1580)">Add to Cart</button>
+        </div>
+	<div class="product" data-category="short-sleeve">
+            <img src="https://www.stussy.com/cdn/shop/files/1905059_BLAC_1.jpg?v=1728313838&width=1440" alt="Short Sleeve T-Shirt">
+            <p> BASIC T-SHIRT</p>
+            <p>Price: NT$1580</p>
+            <select>
+                <option>Size: S</option>
+                <option>Size: M</option>
+                <option>Size: L</option>
+            </select>
+            <button onclick="addToCart(1580)">Add to Cart</button>
+        </div>
+	<div class="product" data-category="short-sleeve">
+            <img src="https://www.stussy.com/cdn/shop/files/1905059_RUST_1.jpg?v=1728313843&width=1440" alt="Short Sleeve T-Shirt">
+            <p> BASIC T-SHIRT</p>
+            <p>Price: NT$1580</p>
+            <select>
+                <option>Size: S</option>
+                <option>Size: M</option>
+                <option>Size: L</option>
+            </select>
+            <button onclick="addToCart(1580)">Add to Cart</button>
+        </div>
+        <div class="product" data-category="short-sleeve">
+            <img src="https://www.stussy.com/cdn/shop/files/1140283_FBLA_3_851349fb-4a82-4655-9d45-a84fbf9f2ae7.jpg?v=1723763778&width=1440" alt="Short Sleeve T-Shirt">
+            <p>GRAPHIC TEE</p>
+            <p>Price: NT$1980</p>
+            <select>
+                <option>Size: S</option>
+                <option>Size: M</option>
+                <option>Size: L</option>
+            </select>
+            <button onclick="addToCart(1980)">Add to Cart</button>
+        </div>
+	<div class="product" data-category="short-sleeve">
+            <img src="https://www.stussy.com/cdn/shop/files/1140283_DEET_1_b409a282-2a42-4fad-bb1f-d1322bfed008.jpg?v=1723053484&width=1440">
+            <p>GRAPHIC TEE</p>
+            <p>Price: NT$1980</p>
+            <select>
+                <option>Size: S</option>
+                <option>Size: M</option>
+                <option>Size: L</option>
+            </select>
+            <button onclick="addToCart(1980)">Add to Cart</button>
+        </div>
+	<div class="product" data-category="short-sleeve">
+            <img src="https://www.stussy.com/cdn/shop/files/1140283_MAGE_1_981e6cf4-0d62-4c08-8fa0-f5c0a0948924.jpg?v=1723053489&width=1440">
+            <p>GRAPHIC TEE</p>
+            <p>Price: NT$1980</p>
+            <select>
+                <option>Size: S</option>
+                <option>Size: M</option>
+                <option>Size: L</option>
+            </select>
+            <button onclick="addToCart(1980)">Add to Cart</button>
+        </div>
+        <div class="product" data-category="short-sleeve">
+            <img src="https://www.stussy.com/cdn/shop/files/1905100_NATL_1.jpg?v=1730745193&width=1440" alt="Short Sleeve T-Shirt">
+            <p>CLASSIC CREW TEE</p>
+            <p>Price: NT$1780</p>
+            <select>
+                <option>Size: S</option>
+                <option>Size: M</option>
+                <option>Size: L</option>
+            </select>
+            <button onclick="addToCart(1780)">Add to Cart</button>
+        </div>
+        <div class="product" data-category="accessories">
+            <img src="https://www.stussy.com/cdn/shop/files/1311126_RTED_1.jpg?v=1728688480&width=1440" alt="Beanie Hat">
+            <p>BEANIE HAT</p>
+            <p>Price: NT$1980</p>
+            <select>
+                <option>Color: S</option>
+                <option>Color: M</option>
+                <option>Color: L</option>
+            </select>
+            <button onclick="addToCart(1980)">Add to Cart</button>
+        </div>
+	 <div class="product" data-category="accessories">
+            <img src="https://www.stussy.com/cdn/shop/files/1311126_SCAR_1.jpg?v=1728688482&width=1440" alt="Beanie Hat">
+            <p>BEANIE HAT</p>
+            <p>Price: NT$1980</p>
+            <select>
+                <option>Color: S</option>
+                <option>Color: M</option>
+                <option>Color: L</option>
+            </select>
+            <button onclick="addToCart(1980)">Add to Cart</button>
+        </div>
+	<div class="product" data-category="accessories">
+            <img src="https://www.stussy.com/cdn/shop/files/1311126_NAVY_1_f47eb6b2-dde7-46e0-b357-78cf3be400a6.jpg?v=1729536248&width=1440" alt="Beanie Hat">
+            <p>BEANIE HAT</p>
+            <p>Price: NT$1980</p>
+            <select>
+                <option>Color: S</option>
+                <option>Color: M</option>
+                <option>Color: L</option>
+            </select>
+            <button onclick="addToCart(1980)">Add to Cart</button>
+        </div>
+        <div class="product" data-category="accessories">
+            <img src="https://www.stussy.com/cdn/shop/files/138775_BLAC_1_255aeeb2-d6e6-433c-924d-5d4a4a86fb3f.jpg?v=1730834911&width=1440" alt="Cotton Socks">
+            <p>COTTON SOCKS</p>
+            <p>Price: NT$1280</p>
+            <select>
+                <option>Color: S</option>
+                <option>Color: M</option>
+                <option>Color: L</option>
+            </select>
+            <button onclick="addToCart(1280)">Add to Cart</button>
+        </div>
+	<div class="product" data-category="accessories">
+            <img src="https://www.stussy.com/cdn/shop/files/138775_WHIT_1_cc6e55b5-ab1a-4800-b339-961e79f9be9d.jpg?v=1730834913&width=1440" alt="Cotton Socks">
+            <p>COTTON SOCKS</p>
+            <p>Price: NT$1280</p>
+            <select>
+                <option>Color: S</option>
+                <option>Color: M</option>
+                <option>Color: L</option>
+            </select>
+            <button onclick="addToCart(1280)">Add to Cart</button>
+        </div>
+        <div class="product" data-category="accessories">
+            <img src="https://www.stussy.com/cdn/shop/files/135188_DISB_1.jpg?v=1723741219&width=1440" alt="Leather Belt">
+            <p>LEATHER BELT</p>
+            <p>Price: NT$1980</p>
+            <select>
+                <option>Color: one size</option>
+            </select>
+            <button onclick="addToCart(1980)">Add to Cart</button>
+        </div>
+	<div class="product" data-category="accessories">
+            <img src="https://www.stussy.com/cdn/shop/files/135184_BLAC_1_1f31597a-8b98-4182-83dc-1c367aed0843.jpg?v=1729236729&width=1440" alt="Leather Belt">
+            <p>LEATHER BELT</p>
+            <p>Price: NT$1980</p>
+            <select>
+                <option>Color: one size</option>
+                
+            </select>
+            <button onclick="addToCart(1980)">Add to Cart</button>
+        </div>
+        <div class="product" data-category="outerwear">
+            <img src="https://www.stussy.com/cdn/shop/files/115807_RYBL_3.jpg?v=1732303457&width=1440" alt="Outerwear">
+            <p>BEACH SHELL CRACKED RIPSTOP</p>
+            <p>Price: NT$8540</p>
+            <select>
+                <option>Size: S</option>
+                <option>Size: M</option>
+                <option>Size: L</option>
+            </select>
+            <button onclick="addToCart(8540)">Add to Cart</button>
+        </div>
+	<div class="product" data-category="outerwear">
+            <img src="https://www.stussy.com/cdn/shop/files/115807_ORAN_3.jpg?v=1732303456&width=1440" alt="Outerwear">
+            <p>BEACH SHELL CRACKED RIPSTOP</p>
+            <p>Price: NT$8540</p>
+            <select>
+                <option>Size: S</option>
+                <option>Size: M</option>
+                <option>Size: L</option>
+            </select>
+            <button onclick="addToCart(8540)">Add to Cart</button>
+        </div>
+        <div class="product" data-category="outerwear">
+            <img src="https://www.stussy.com/cdn/shop/files/115781_MUSH_3.jpg?v=1730497227&width=1440" alt="Outerwear">
+            <p> RUCKER JACKET DENIM</p>
+            <p>Price: NT$8540</p>
+            <select>
+                <option>Size: S</option>
+                <option>Size: M</option>
+                <option>Size: L</option>
+            </select>
+            <button onclick="addToCart(8540)">Add to Cart</button>
+        </div>
+	<div class="product" data-category="outerwear">
+            <img src="https://www.stussy.com/cdn/shop/files/115781_RIIN_3.jpg?v=1723052237&width=1440" alt="Outerwear">
+            <p> RUCKER JACKET DENIM</p>
+            <p>Price: NT$8540</p>
+            <select>
+                <option>Size: S</option>
+                <option>Size: M</option>
+                <option>Size: L</option>
+            </select>
+            <button onclick="addToCart(8540)">Add to Cart</button>
+        </div>
+	<div class="product" data-category="outerwear">
+            <img src="https://www.stussy.com/cdn/shop/files/115781_LIWA_3_da816b4d-2cf7-462c-a5c2-33509add86a7.jpg?v=1723107469&width=1440" alt="Outerwear">
+            <p> RUCKER JACKET DENIM</p>
+            <p>Price: NT$8540</p>
+            <select>
+                <option>Size: S</option>
+                <option>Size: M</option>
+                <option>Size: L</option>
+            </select>
+            <button onclick="addToCart(8540)">Add to Cart</button>
+        </div>
+        <div class="product" data-category="outerwear">
+            <img src="https://www.stussy.com/cdn/shop/files/118529_BSTO_5_4bac023e-bb75-4dcd-bb56-dea1d0f663c9.jpg?v=1730834916&width=1440" alt="Outerwear">
+            <p>PUFFER JACKET</p>
+            <p>Price: NT$9280</p>
+            <select>
+                <option>Size: S</option>
+                <option>Size: M</option>
+                <option>Size: L</option>
+            </select>
+            <button onclick="addToCart(9280)">Add to Cart</button>
+        </div>
+	<div class="product" data-category="outerwear">
+            <img src="https://www.stussy.com/cdn/shop/files/118529_BLAC_5.jpg?v=1723053406&width=1440" alt="Outerwear">
+            <p>PUFFER JACKET</p>
+            <p>Price: NT$9280</p>
+            <select>
+                <option>Size: S</option>
+                <option>Size: M</option>
+                <option>Size: L</option>
+            </select>
+            <button onclick="addToCart(9280)">Add to Cart</button>
+        </div>
+	<div class="product" data-category="outerwear">
+            <img src="https://www.stussy.com/cdn/shop/files/118529_DGRE_5.jpg?v=1723676366&width=1440" alt="Outerwear">
+            <p>PUFFER JACKET</p>
+            <p>Price: NT$9280</p>
+            <select>
+                <option>Size: S</option>
+                <option>Size: M</option>
+                <option>Size: L</option>
+            </select>
+            <button onclick="addToCart(9280)">Add to Cart</button>
+        </div>
+    </div>
+
+    <div class="cart">
+        <p>Total Cart Amount: <span id="total-price">0</span> NT$</p>
+    </div>
+
+    <script>
+        const introPage = document.getElementById('intro-page');
+        const header = document.querySelector('header');
+        const nav = document.querySelector('nav');
+        const products = document.querySelectorAll('.product');
+        const productContainer = document.getElementById('product-container');
+        const totalPriceEl = document.getElementById('total-price');
+        const totalPriceHeaderEl = document.getElementById('total-price-header');
+        let totalPrice = 0;
+
+        function enterShop(category) {
+            introPage.style.display = 'none';
+            header.style.display = 'flex';
+            nav.style.display = 'flex';
+            productContainer.style.display = 'grid';
+            showCategory(category);
+        }
+
+        function showCategory(category) {
+            products.forEach(product => {
+                product.style.display = product.getAttribute('data-category') === category ? 'block' : 'none';
+            });
+        }
+
+        function addToCart(price) {
+            totalPrice += price;
+            totalPriceEl.textContent = totalPrice;
+            totalPriceHeaderEl.textContent = totalPrice;
+        }
+    </script>
+</body>
+</html>
